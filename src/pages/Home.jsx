@@ -1,23 +1,23 @@
+import { AnimatePresence, motion } from 'motion/react';
 import React, { useEffect, useState } from 'react'
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import Header from '../components/Header';
+import { Cards } from '../components/Cards';
+
+
+
+
 
 const Home = () => {
-  const [name, setname] = useState("")
-  useEffect(() => {
-
-  setname(JSON.parse(localStorage.getItem("name")))
-    
-  }, [])
-  
-  const logout = ()=>{
-    localStorage.setItem("login",false)
-    window.location.reload()
-  }
+ 
 
   return (
     <>
-    <div className='w-full h-full bg-[#242424]'>WelCome {name}
-
-      <button className='text-white' onClick={()=>logout()}>LogOut</button>
+    <div className='w-full h-full bg-[#242424]'>
+     
+      <Header/>
+      <Cards/>
+      
     </div>
     
     </>
