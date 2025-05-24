@@ -15,6 +15,7 @@ const Home = () => {
   
   const [Ishow, setIshow] = useState(false)
   const [Eshow, setEshow] = useState(false)
+  const [refresh, setrefresh] = useState(0)
 
   const handleCards = (text)=>{
      if(text === "add income"){
@@ -45,14 +46,14 @@ const Home = () => {
    animate={{opacity:0.5}}
    className='h-full w-full  bg-black absolute z-5'></motion.div>}  
       <Header/>
-      <Cards func={handleCards}/>
+      <Cards func={handleCards} refresh={refresh}/>
  <AnimatePresence>
     {Ishow && 
    
-     <Income func={closeCard}/>
+     <Income func={closeCard} onSuccess={()=>setrefresh(r => r + 1)}/>
     
      } 
-    {Eshow &&  <Expenses func={closeCard}/>} 
+    {Eshow &&  <Expenses func={closeCard} onSuccess={()=>setrefresh(r => r + 1)}/>} 
      </AnimatePresence>
       
       

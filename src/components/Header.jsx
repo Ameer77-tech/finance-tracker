@@ -8,9 +8,12 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 const Header = () => {
      const [name, setname] = useState("")
   const [show, setshow] = useState(false)
+  const [income, setincome] = useState(0)
+  const [expense, setexpense] = useState(0)
   useEffect(() => {
-
   setname(JSON.parse(localStorage.getItem("name")))
+  setincome(localStorage.getItem("income"))
+  setexpense(localStorage.getItem("expense"))
     
   }, [])
   
@@ -46,8 +49,8 @@ const Header = () => {
               y:-10
              }}
              className='absolute h-auto w-90 bg-white top-[120%] text-gray-800 text-lg px-5 -left-50 py-5 flex flex-col gap-3 justify-evenly rounded-2xl pointer-events-none'>
-              <p className='uppercase font-bold tracking-wide'>income - ₹10,000</p>
-              <p className='uppercase font-bold tracking-wide'>Expenses - ₹10,000</p>
+              <p className='uppercase font-bold tracking-wide'> income - ₹{income}</p>
+              <p className='uppercase font-bold tracking-wide'> Expenses - ₹{expense}</p>
               <div className='bg-gray-900 hover:bg-gray-800 px-3 py-2 -ml-3 rounded-xl cursor-pointer pointer-events-auto uppercase font-bold text-red-500'>Reset Data</div>
                <div 
                onClick={()=>{logout()}}
