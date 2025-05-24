@@ -4,7 +4,7 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import Header from '../components/Header';
 import { Cards } from '../components/Cards';
 import Income from '../components/Income';
-import Expenses from '../components/expenses';
+import Expenses from '../components/Expenses';
 
 
 
