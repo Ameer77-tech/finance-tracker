@@ -24,6 +24,7 @@ const Income = (props) => {
   if (!data.amount || Number(data.amount) <= 0) {
     err.amount = "Enter a valid amount";
   }
+  if(Number(data.amount) > 100000000) err.amount = "Max Limit - 10crores"
   if (!data.date) {
     err.date = "Date is required";
   }
@@ -32,8 +33,8 @@ const Income = (props) => {
 
  if (Object.keys(err).length === 0) {
   const existing = JSON.parse(localStorage.getItem("transactions") || "[]");
-  const existingIncome =parseInt(localStorage.getItem("income")) || 0;
-  const income = existingIncome + parseInt(data.amount)
+  const existingIncome =parseFloat(localStorage.getItem("income")) || 0;
+  const income = existingIncome + parseFloat(data.amount)
   existing.push(data);
   localStorage.setItem("transactions", JSON.stringify(existing));
   localStorage.setItem("income",income)
@@ -57,6 +58,7 @@ const handleChange = (e)=>{
     if (name === "amount") {
       err.amount = !value || Number(value) <= 0 ? "Enter a valid amount" : ""
     }
+     
     if (name === "date") {
       err.date = !value ? "Date is required" : ""
     }

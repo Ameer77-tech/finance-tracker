@@ -21,6 +21,7 @@ const Expenses = (props) => {
     if (!data.amount || Number(data.amount) <= 0) {
       err.amount = "Enter a valid amount";
     }
+      if(Number(data.amount) > 100000000) err.amount = "Max Limit - 10crores"
     if (!data.date) {
       err.date = "Date is required";
     }

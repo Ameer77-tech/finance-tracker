@@ -45,7 +45,7 @@ const Home = () => {
    }}
    animate={{opacity:0.5}}
    className='h-full w-full  bg-black absolute z-5'></motion.div>}  
-      <Header/>
+      <Header onSuccess={()=>setrefresh(r => r + 1)} refresh={refresh}/>
       <Cards func={handleCards} refresh={refresh}/>
  <AnimatePresence>
     {Ishow && 
