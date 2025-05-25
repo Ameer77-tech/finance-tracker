@@ -5,12 +5,12 @@ import { FaTimes } from 'react-icons/fa'
 
 
 const Income = (props) => {
-  const type = ("Income")
+  
   const [data, setdata] = useState({
     name:"",
     amount:"",
     date:"",
-    type:type
+    type:"Income"
   })
 
   const [errors, setErrors] = useState({})
@@ -41,6 +41,7 @@ const Income = (props) => {
   props.onSuccess()
   setdata({ name:"", amount:"", date:"" });
   setErrors({});
+  props.func()
 }
 }
 

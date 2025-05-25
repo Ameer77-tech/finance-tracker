@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import { Cards } from '../components/Cards';
 import Income from '../components/Income';
 import Expenses from '../components/Expenses';
+import Transactions from '../components/Transactions';
 
 
 
@@ -38,13 +39,13 @@ const Home = () => {
   }
   return (
     <>
-    <div className={`w-full h-full bg-[#242424] `}>
+    <div className={`w-full min-h-screen bg-[#242424] relative`}>
    {(Ishow || Eshow) && <motion.div 
    initial={{
     opacity:0
    }}
    animate={{opacity:0.5}}
-   className='h-full w-full  bg-black absolute z-5'></motion.div>}  
+   className='h-full absolute w-full bg-black z-5'></motion.div>}  
       <Header onSuccess={()=>setrefresh(r => r + 1)} refresh={refresh}/>
       <Cards func={handleCards} refresh={refresh}/>
  <AnimatePresence>
@@ -56,7 +57,7 @@ const Home = () => {
     {Eshow &&  <Expenses func={closeCard} onSuccess={()=>setrefresh(r => r + 1)}/>} 
      </AnimatePresence>
       
-      
+    <Transactions  refresh={refresh}/>  
     </div>
     
     </>

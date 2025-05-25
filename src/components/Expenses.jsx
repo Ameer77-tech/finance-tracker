@@ -3,12 +3,12 @@ import { FaTimes } from 'react-icons/fa'
 import { AnimatePresence, motion } from 'motion/react';
 
 const Expenses = (props) => {
-  const type = "expense"
+  
   const [data, setdata] = useState({
     name:"",
     amount:"",
     date:"",
-    type:type
+    type:"Expense"
   })
   const [errors, setErrors] = useState({})
   
@@ -38,6 +38,7 @@ const Expenses = (props) => {
     props.onSuccess()
     setdata({ name:"", amount:"", date:"" });
     setErrors({});
+    props.func()
   }
   }
 
