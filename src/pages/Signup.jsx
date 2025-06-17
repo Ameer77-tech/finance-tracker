@@ -1,5 +1,5 @@
 import { easeOut, motion } from 'motion/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
@@ -13,6 +13,21 @@ const Signup = () => {
   const navigate = useNavigate()
 
  // ...existing code...
+
+  useEffect(() => {
+    const logged = JSON.parse(localStorage.getItem("login")) || false
+    if(logged){
+      navigate('/')
+    }
+    else{
+       return;
+    }
+  
+   
+  }, [])
+  
+
+
 const submit = () => {
   let valid = true;
 
