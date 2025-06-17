@@ -25,14 +25,8 @@ const App = () => {
    <>
    <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={login ? <Home /> : <Navigate to="/Signup" replace />}
-        />
-        <Route
-          path="/Signup"
-          element={login ? <Navigate to="/" replace/> : <Signup />} 
-        />
+        <Route path="/" element={<Home/>}/>
+         <Route path="signup" element={<Signup/>}/>
       </Routes>
     </BrowserRouter>
    </>

@@ -6,6 +6,7 @@ import { Cards } from '../components/Cards';
 import Income from '../components/Income';
 import Expenses from '../components/Expenses';
 import Transactions from '../components/Transactions';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -17,6 +18,22 @@ const Home = () => {
   const [Ishow, setIshow] = useState(false)
   const [Eshow, setEshow] = useState(false)
   const [refresh, setrefresh] = useState(0)
+  const navigate = useNavigate()
+
+    useEffect(() => {
+     const logged = JSON.parse(localStorage.getItem("login")) 
+     if(logged){
+        
+        localStorage.setItem("login",true)
+     }
+     else{
+      navigate('/signup')
+     }
+      
+   
+    }, [])
+    
+
 
   const handleCards = (text)=>{
      if(text === "add income"){

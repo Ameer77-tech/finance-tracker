@@ -1,11 +1,13 @@
 import { AnimatePresence, motion } from 'motion/react';
 import React, { useEffect, useState } from 'react'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 const Header = ({onSuccess,refresh}) => {
+  const navigate = useNavigate() 
      const [name, setname] = useState("")
   const [show, setshow] = useState(false)
   const [income, setincome] = useState(0)
@@ -21,7 +23,7 @@ const Header = ({onSuccess,refresh}) => {
     const ok = confirm("Are You Sure")
     if(ok){
        localStorage.setItem("income",parseFloat(0))
-    localStorage.setItem("expense",parseFloat(0))
+       localStorage.setItem("expense",parseFloat(0))
     onSuccess()
     }
     else{
@@ -33,7 +35,7 @@ const Header = ({onSuccess,refresh}) => {
   const logout = ()=>{
 
     localStorage.setItem("login",false)
-    window.location.reload()
+    navigate('/signup')
   }
   return (
      <div className='h-auto w-full bg-linear-to-br to-black from-red-800  rounded flex justify-between items-center p-10'>

@@ -10,7 +10,7 @@ const Signup = () => {
   const [nameStats, setnameStats] = useState("")
   const [emailStats, setemailStats] = useState("")
   const [passwordStats, setpasswordStats] = useState("")
-
+  const navigate = useNavigate()
 
  // ...existing code...
 const submit = () => {
@@ -47,7 +47,11 @@ const submit = () => {
   }
 
   if (!valid) return;
-  else {localStorage.setItem("login","true"); localStorage.setItem("name",JSON.stringify(name)); window.location.reload();}
+  else {
+      localStorage.setItem("login","true"); 
+      localStorage.setItem("name",JSON.stringify(name));
+      navigate("/");
+    }
   
 }
 
