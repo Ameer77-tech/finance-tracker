@@ -1,12 +1,12 @@
 import { AnimatePresence, motion } from 'motion/react';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import Header from '../components/Header';
 import { Cards } from '../components/Cards';
 import Income from '../components/Income';
 import Expenses from '../components/Expenses';
 import Transactions from '../components/Transactions';
-import { useNavigate } from 'react-router-dom';
+
 
 
 
@@ -18,20 +18,9 @@ const Home = () => {
   const [Ishow, setIshow] = useState(false)
   const [Eshow, setEshow] = useState(false)
   const [refresh, setrefresh] = useState(0)
-  const navigate = useNavigate()
 
-    useEffect(() => {
-     const logged = JSON.parse(localStorage.getItem("login")) 
-     if(logged){
-        
-        localStorage.setItem("login",true)
-     }
-     else{
-      navigate('/signup')
-     }
-      
-   
-    }, [])
+
+  
     
 
 
@@ -56,7 +45,7 @@ const Home = () => {
   }
   return (
     <>
-    <div className={`w-full min-h-screen bg-[#242424] relative`}>
+    <div className={`w-full min-h-screen bg-[#011114] relative`}>
    {(Ishow || Eshow) && <motion.div 
    initial={{
     opacity:0

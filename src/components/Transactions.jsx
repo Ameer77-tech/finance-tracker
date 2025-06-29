@@ -1,67 +1,79 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
 const Transactions = ({ refresh }) => {
-  const [transactions, settransactions] = useState([])
+  const [transactions, settransactions] = useState([]);
 
   useEffect(() => {
-    // Always default to an array if localStorage is empty or invalid
-    let data = []
+    let data = [];
     try {
-      data = JSON.parse(localStorage.getItem("transactions") || "[]") || []
-      if (!Array.isArray(data)) data = []
+      data = JSON.parse(localStorage.getItem("transactions") || "[]") || [];
+      if (!Array.isArray(data)) data = [];
     } catch {
-      data = []
+      data = [];
     }
-    settransactions(data)
-  }, [refresh])
+    settransactions(data);
+  }, [refresh]);
 
   const deleteRow = (idx) => {
-    const updated = transactions.filter((_, index) => index !== idx)
-    settransactions(updated)
-    localStorage.setItem("transactions", JSON.stringify(updated))
-  }
+    const updated = transactions.filter((_, index) => index !== idx);
+    settransactions(updated);
+    localStorage.setItem("transactions", JSON.stringify(updated));
+  };
 
   return (
-    <div className='w-full h-auto px-4 md:px-20 flex justify-center'>
-      <div className='bg-cyan-100 w-full h-auto rounded-2xl mt-10 p-5 md:px-10 overflow-x-auto'>
-        <table className='text-black w-full table-fixed'>
-          <caption className='text-center text-3xl font-medium tracking-widest font-sans mb-7'>
+    <div className="md:w-full md:h-auto md:px-20 md:flex md:justify-center">
+      <div className="md:bg-[#021832] md:w-full md:h-auto md:rounded-2xl  md:p-5 md:px-10 md:overflow-x-auto">
+        <table className="md:w-full md:table-fixed">
+          <caption className="md:text-center md:text-3xl md:font-medium md:tracking-widest md:font-sans md:mb-7">
             My Transactions
           </caption>
           {transactions.length === 0 ? (
             <tbody>
               <tr>
-                <td colSpan={5} className='font-bold text-xl text-gray-700 text-center py-8'>
+                <td
+                  colSpan={5}
+                  className="md:font-bold md:text-xl md:text-gray-700 md:text-center md:py-8"
+                >
                   No Data
                 </td>
               </tr>
             </tbody>
           ) : (
             <>
-              <thead className='font-mono text-lg'>
+              <thead className="md:font-mono md:text-lg">
                 <tr>
-                  <th className='text-start w-1/4'>Name</th>
-                  <th className='text-start w-1/4'>Amount</th>
-                  <th className='text-start w-1/4'>Type</th>
-                  <th className='text-start w-1/4'>Date</th>
-                  <th className='text-start w-32'>Actions</th>
+                  <th className="md:text-start md:w-1/4">Name</th>
+                  <th className="md:text-start md:w-1/4">Amount</th>
+                  <th className="md:text-start md:w-1/4">Type</th>
+                  <th className="md:text-start md:w-1/4">Date</th>
+                  <th className="md:text-start md:w-32">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {transactions.map((t, idx) => (
                   <tr key={idx}>
-                    <td className='w-1/4'>{t.name}</td>
-                    <td className='w-1/4'>{t.amount}</td>
-                    <td className={`w-1/4 ${t.type === "Expense" ? 'text-red-600' : 'text-emerald-600'}`}>{t.type}</td>
-                    <td className='w-1/6'>{t.date}</td>
-                    <td className='w-10 flex justify-evenly gap-5'>
+                    <td className="md:w-1/4">{t.name}</td>
+                    <td className="md:w-1/4">{t.amount}</td>
+                    <td
+                      className={`md:w-1/4 ${
+                        t.type === "Expense"
+                          ? "md:text-red-600"
+                          : "md:text-emerald-600"
+                      }`}
+                    >
+                      {t.type}
+                    </td>
+                    <td className="md:w-1/6">{t.date}</td>
+                    <td className="md:w-10 md:flex md:justify-evenly md:gap-5">
                       <div
-                        className='font-medium text-red-600 cursor-pointer select-none'
+                        className="md:font-medium md:text-red-600 md:cursor-pointer md:select-none"
                         onClick={() => deleteRow(idx)}
                       >
                         Delete
                       </div>
-                      <div className='font-medium text-cyan-600 cursor-pointer select-none'>Edit</div>
+                      <div className="md:font-medium md:text-[#71e4f7] md:cursor-pointer md:select-none">
+                        Edit
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -71,7 +83,7 @@ const Transactions = ({ refresh }) => {
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Transactions
+export default Transactions;
