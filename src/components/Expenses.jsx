@@ -67,12 +67,12 @@ const Expenses = (props) => {
       animate={{ opacity: 1, scale: 1, x: 0 }}
       exit={{ opacity: 0, scale: 0.2, x: 300 }}
       transition={{ ease: 'anticipate' }}
-      className='md:absolute md:p-5 md:bg-white md:w-1/4 md:h-2/4 md:top-2/4 md:left-2/4 md:-translate-x-2/4 md:-translate-y-2/4 md:scale-130 md:rounded-xl md:z-10 md:shadow-2xl md:shadow-black md:flex md:flex-col md:justify-between'
+      className='md:absolute md:p-5 bg-[#031733] md:w-1/4 md:h-2/4 md:top-2/4 md:left-2/4 md:-translate-x-2/4 md:-translate-y-2/4 md:scale-130 md:rounded-xl md:z-10 md:shadow-2xl md:shadow-black md:flex md:flex-col md:justify-between'
     >
       <div className='md:w-full md:flex md:justify-between md:items-center'>
-        <h1 className='md:uppercase md:text-black md:font-medium'>ADD EXPENSE</h1>
+        <h1 className='md:uppercase md:font-medium'>ADD EXPENSE</h1>
         <FaTimes
-          className='md:text-black md:hover:bg-red-500 md:cursor-pointer md:transition-all md:ease md:rounded-full md:p-1 md:w-6 md:h-6'
+          className='md:hover:bg-red-500 md:cursor-pointer md:transition-all md:ease md:rounded-full md:p-1 md:w-6 md:h-6'
           onClick={() => {
             props.func()
           }}
@@ -83,27 +83,27 @@ const Expenses = (props) => {
           value={data.name} name='name'
           onChange={handleChange}
           type="text" placeholder='Enter name'
-          className='md:placeholder:text-gray-600 md:text-sm md:font-semibold md:text-black md:border-b-2 md:border-b-gray-600 md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-2 md:py-1 md:rounded-xl'
+          className='md:text-sm border-1 border-[#dbf8fd] md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-3 md:py-2 rounded-sm'
         />
         {errors.name && <span className="md:text-red-500 md:text-xs">{errors.name}</span>}
         <input
           value={data.amount} name='amount'
           onChange={handleChange}
           type="number" placeholder='Enter Amount*'
-          className='md:placeholder:text-gray-600 md:text-sm md:font-semibold md:text-black md:border-b-2 md:border-b-gray-600 md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-2 md:py-1 md:rounded-xl'
+          className='md:text-sm border-1 border-[#dbf8fd] md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-3 md:py-2 rounded-sm'
         />
         {errors.amount && <span className="md:text-red-500 md:text-xs">{errors.amount}</span>}
         <input
           value={data.date} name='date'
           onChange={handleChange}
           type="date" placeholder='Enter Date'
-          className='md:placeholder:text-gray-600 md:text-sm md:font-semibold md:text-black md:border-b-2 md:border-b-gray-600 md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-2 md:py-1 md:rounded-xl'
+          className='md:text-sm border-1 border-[#dbf8fd] md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-3 md:py-2 rounded-sm'
         />
         {errors.date && <span className="md:text-red-500 md:text-xs">{errors.date}</span>}
       </div>
       <button
         onClick={add}
-        className='md:text-white md:font-bold md:text-sm md:bg-red-600 md:rounded-2xl md:py-1 md:cursor-pointer md:hover:bg-red-500 md:transition-all md:ease'
+        className='md:text-white md:font-bold md:text-sm md:bg-red-600 md:rounded-2xl md:py-1 md:cursor-pointer hover:shadow-red-900 hover:shadow-xl hover:-translate-y-1 md:transition-all md:ease'
       >ADD</button>
     </motion.div>
   )

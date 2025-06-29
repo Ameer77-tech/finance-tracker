@@ -68,12 +68,12 @@ const Income = (props) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.2 }}
       transition={{ ease: 'anticipate' }}
-      className='md:absolute md:p-5 md:bg-white md:w-1/4 md:h-2/4 md:top-2/4 md:left-2/4 md:-translate-x-2/4 md:-translate-y-2/4 md:scale-130 md:rounded-xl md:z-10 md:shadow-2xl md:shadow-black md:flex md:flex-col md:justify-between'
+      className='md:absolute md:p-5 bg-[#031733] md:w-1/4 md:h-2/4 md:top-2/4 md:left-2/4 md:-translate-x-2/4 md:-translate-y-2/4 md:scale-130 md:rounded-xl md:z-10 md:shadow-2xl md:shadow-black md:flex md:flex-col md:justify-between'
     >
       <div className='md:w-full md:flex md:justify-between md:items-center'>
-        <h1 className='md:uppercase md:text-black md:font-medium'>ADD INCOME</h1>
+        <h1 className='md:uppercase md:font-medium'>ADD INCOME</h1>
         <FaTimes
-          className='md:text-black md:hover:bg-emerald-500 md:cursor-pointer md:transition-all md:ease md:rounded-full md:p-1 md:w-6 md:h-6'
+          className=' md:hover:bg-emerald-500 md:cursor-pointer md:transition-all md:ease md:rounded-full md:p-1 md:w-6 md:h-6'
           onClick={() => {
             props.func()
           }}
@@ -86,7 +86,7 @@ const Income = (props) => {
           onChange={handleChange}
           type="text"
           placeholder='Enter name'
-          className='md:placeholder:text-gray-600 md:text-sm md:font-semibold md:text-black md:border-b-2 md:border-b-gray-600 md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-2 md:py-1 md:rounded-xl'
+          className='md:text-sm border-1 border-[#dbf8fd] md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-3 md:py-2 rounded-sm'
         />
         {errors.name && <span className="md:text-red-500 md:text-xs">{errors.name}</span>}
         <input
@@ -95,7 +95,7 @@ const Income = (props) => {
           name='amount'
           type="number"
           placeholder='Enter Amount*'
-          className='md:placeholder:text-gray-600 md:text-sm md:font-semibold md:text-black md:border-b-2 md:border-b-gray-600 md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-2 md:py-1 md:rounded-xl'
+          className='md:text-sm border-1 border-[#dbf8fd] md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-3 md:py-2 rounded-sm'
         />
         {errors.amount && <span className="md:text-red-500 md:text-xs">{errors.amount}</span>}
         <input
@@ -104,12 +104,12 @@ const Income = (props) => {
           name='date'
           type="date"
           placeholder='Enter Date'
-          className='md:placeholder:text-gray-600 md:text-sm md:font-semibold md:text-black md:border-b-2 md:border-b-gray-600 md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-2 md:py-1 md:rounded-xl'
+          className='md:text-sm border-1 border-[#dbf8fd] md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-3 md:py-2 rounded-sm'
         />
         {errors.date && <span className="md:text-red-500 md:text-xs">{errors.date}</span>}
       </div>
       <button
-        className='md:text-white md:font-bold md:text-sm md:bg-emerald-600 md:rounded-2xl md:py-1 md:cursor-pointer md:hover:bg-emerald-500 md:transition-all md:ease'
+        className='md:text-white md:font-bold md:text-sm md:bg-emerald-600 md:rounded-2xl md:py-1 md:cursor-pointer hover:shadow-emerald-800 hover:shadow-xl hover:-translate-y-1 md:transition-all md:ease'
         onClick={add}
       >ADD</button>
     </motion.div>

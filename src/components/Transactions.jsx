@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion, spring } from 'motion/react';
 
 const Transactions = ({ refresh }) => {
   const [transactions, settransactions] = useState([]);
@@ -51,7 +52,8 @@ const Transactions = ({ refresh }) => {
               </thead>
               <tbody>
                 {transactions.map((t, idx) => (
-                  <tr key={idx}>
+
+                  <motion.tr key={idx} initial={{y:-10}} animate={{y:0}} transition={{type:spring,stiffness:300}}>
                     <td className="md:w-1/4">{t.name}</td>
                     <td className="md:w-1/4">{t.amount}</td>
                     <td
@@ -75,7 +77,7 @@ const Transactions = ({ refresh }) => {
                         Edit
                       </div>
                     </td>
-                  </tr>
+                  </motion.tr>
                 ))}
               </tbody>
             </>
