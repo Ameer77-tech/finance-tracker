@@ -67,7 +67,7 @@ const Expenses = (props) => {
       animate={{ opacity: 1, scale: 1, x: 0 }}
       exit={{ opacity: 0, scale: 0.2, x: 300 }}
       transition={{ ease: 'anticipate' }}
-      className='md:absolute md:p-5 bg-[#031733] md:w-1/4 md:h-2/4 md:top-2/4 md:left-2/4 md:-translate-x-2/4 md:-translate-y-2/4 md:scale-130 md:rounded-xl md:z-10 md:shadow-2xl md:shadow-black md:flex md:flex-col md:justify-between'
+      className='md:absolute md:p-5 bg-[#031733] md:w-1/4 md:h-100 md:top-100 md:left-2/4 md:-translate-x-2/4 md:-translate-y-2/4 md:scale-130 md:rounded-xl md:z-10 md:shadow-2xl md:shadow-black md:flex md:flex-col md:justify-between'
     >
       <div className='md:w-full md:flex md:justify-between md:items-center'>
         <h1 className='md:uppercase md:font-medium'>ADD EXPENSE</h1>
