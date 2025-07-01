@@ -38,7 +38,7 @@ const Home = () => {
               opacity: 0,
             }}
             animate={{ opacity: 0.5 }}
-            className="h-full absolute w-full bg-black z-5"
+            className="h-full absolute w-auto bg-black z-5"
           ></motion.div>
         )}
         <Header onSuccess={() => setrefresh((r) => r + 1)} refresh={refresh} />

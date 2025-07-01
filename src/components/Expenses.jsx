@@ -63,47 +63,47 @@ const Expenses = (props) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8, x: 200 }}
-      animate={{ opacity: 1, scale: 1, x: 0 }}
-      exit={{ opacity: 0, scale: 0.2, x: 300 }}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.2 }}
       transition={{ ease: 'anticipate' }}
-      className='md:absolute md:p-5 bg-[#031733] md:w-1/4 md:h-100 md:top-100 md:left-2/4 md:-translate-x-2/4 md:-translate-y-2/4 md:scale-130 md:rounded-xl md:z-10 md:shadow-2xl md:shadow-black md:flex md:flex-col md:justify-between'
+      className="absolute p-5 bg-[#031733] md:w-1/4 w-3/4 h-100 top-100 left-2/4 -translate-x-2/4 -translate-y-2/4 md:scale-130 rounded-xl z-10 shadow-2xl shadow-black flex flex-col justify-between"
     >
-      <div className='md:w-full md:flex md:justify-between md:items-center'>
-        <h1 className='md:uppercase md:font-medium'>ADD EXPENSE</h1>
+      <div className="w-full flex justify-between items-center">
+        <h1 className="uppercase text-xl font-medium">ADD EXPENSE</h1>
         <FaTimes
-          className='md:hover:bg-red-500 md:cursor-pointer md:transition-all md:ease md:rounded-full md:p-1 md:w-6 md:h-6'
+          className=" md:hover:bg-emerald-500 bg-red-500 md:bg-transparent cursor-pointer transition-all ease rounded-full p-1 md:w-6 md:h-6 w-7 h-7"
           onClick={() => {
             props.func()
           }}
         />
       </div>
-      <div className='md:h-3/4 md:flex md:flex-col md:justify-evenly'>
+      <div className="h-3/4 flex flex-col justify-evenly">
         <input
           value={data.name} name='name'
           onChange={handleChange}
           type="text" placeholder='Enter name'
-          className='md:text-sm border-1 border-[#dbf8fd] md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-3 md:py-2 rounded-sm'
+           className="md:text-sm border-1 border-[#dbf8fd] outline-0 md:hover:shadow-xs focus:shadow-xs transition-all ease focus:shadow-cyan-700 md:hover:shadow-cyan-700 px-3 py-2 rounded-sm"
         />
-        {errors.name && <span className="md:text-red-500 md:text-xs">{errors.name}</span>}
+        {errors.name && <span className="text-red-500 md:text-xs text-sm">{errors.name}</span>}
         <input
           value={data.amount} name='amount'
           onChange={handleChange}
           type="number" placeholder='Enter Amount*'
-          className='md:text-sm border-1 border-[#dbf8fd] md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-3 md:py-2 rounded-sm'
+           className="md:text-sm border-1 border-[#dbf8fd] outline-0 md:hover:shadow-xs focus:shadow-xs transition-all ease focus:shadow-cyan-700 md:hover:shadow-cyan-700 px-3 py-2 rounded-sm"
         />
-        {errors.amount && <span className="md:text-red-500 md:text-xs">{errors.amount}</span>}
+        {errors.amount && <span className="text-red-500 md:text-xs text-sm">{errors.amount}</span>}
         <input
           value={data.date} name='date'
           onChange={handleChange}
           type="date" placeholder='Enter Date'
-          className='md:text-sm border-1 border-[#dbf8fd] md:outline-0 md:hover:shadow-xs md:focus:shadow-xs md:transition-all md:ease md:focus:shadow-cyan-700 md:hover:shadow-cyan-700 md:px-3 md:py-2 rounded-sm'
+          className="md:text-sm w-full border-1 border-[#dbf8fd] outline-0 md:hover:shadow-xs focus:shadow-xs transition-all ease focus:shadow-cyan-700 md:hover:shadow-cyan-700 px-3 py-2 rounded-sm"
         />
-        {errors.date && <span className="md:text-red-500 md:text-xs">{errors.date}</span>}
+        {errors.date && <span className="text-red-500 md:text-xs text-sm">{errors.date}</span>}
       </div>
       <button
         onClick={add}
-        className='md:text-white md:font-bold md:text-sm md:bg-red-600 md:rounded-2xl md:py-1 md:cursor-pointer hover:shadow-red-900 hover:shadow-xl hover:-translate-y-1 md:transition-all md:ease'
+        className="text-white font-bold md:text-sm bg-red-600 rounded-2xl py-1 cursor-pointer active:bg-red-500 active:shadow-red-800 active:shadow-lg select-none hover:shadow-red-800 hover:shadow-xl hover:-translate-y-1 md:transition-all md:ease"
       >ADD</button>
     </motion.div>
   )

@@ -20,7 +20,7 @@ export const Cards = (props) => {
         onClick={() => {
           func(text)
         }}
-        className={`md:mt-7 md:bg-[#72e4f7] ${color} md:font-medium md:py-1 md:text-lg md:cursor-pointer md:rounded hover:shadow-2xl hover:shadow-[#72e4f7] hover:-translate-y-1 transition-all ease`}
+        className={`md:mt-7 bg-[#72e4f7] ${color} text-[#071c1f] font-medium py-1 text-lg cursor-pointer rounded hover:shadow-2xl hover:shadow-[#72e4f7] hover:-translate-y-1 transition-all ease`}
       >
         {text}
       </button>
@@ -28,7 +28,7 @@ export const Cards = (props) => {
   }
 
   return (
-    <div className='md:h-auto md:w-full md:flex md:justify-evenly md:items-center md:py-15'>
+    <div className='md:h-auto py-15 grid grid-cols-1 px-5 gap-5 md:w-full md:flex md:justify-evenly md:items-center md:py-15'>
       <Card color="md:[#071c1f]" text="current balance" amount={current} />
       <Card color="md:[#071c1f]" text="total income" btext="add income" amount={income} button={renderButton} textcolor="md:text-[#051718]"  func={props.func} />
       <Card color="md:[#071c1f]" text="total expenses" btext="add expenses" amount={expense} button={renderButton} textcolor="md:text-[#051718]" func={props.func} />

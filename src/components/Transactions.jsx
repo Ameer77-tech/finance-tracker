@@ -39,20 +39,15 @@ const Transactions = ({ refresh, setrefresh }) => {
     });
   };
 
-  const updateData = (e) => {
-    console.log(e);
-    if (e.code === "Enter") {
-      const updated = transactions.map((item, idx) =>
-        idx === editModeIdx ? { ...item, ...updatedInputs } : item
-      );
-      settransactions(updated);
-      localStorage.setItem("transactions", JSON.stringify(updated));
-      setrefresh((prev) => prev + 1);
-      seteditModeIdx(null);
-      setwrongKey(false);
-    } else {
-      return;
-    }
+  const updateData = () => {
+    const updated = transactions.map((item, idx) =>
+      idx === editModeIdx ? { ...item, ...updatedInputs } : item
+    );
+    settransactions(updated);
+    localStorage.setItem("transactions", JSON.stringify(updated));
+    setrefresh((prev) => prev + 1);
+    seteditModeIdx(null);
+    setwrongKey(false);
   };
 
   useEffect(() => {
@@ -79,23 +74,18 @@ const Transactions = ({ refresh, setrefresh }) => {
   };
 
   return (
-    <div className="md:w-full md:h-auto md:px-20 md:flex md:justify-center">
-      <div className="md:bg-[#021832] md:w-full md:h-auto md:rounded-2xl md:p-5 md:px-10 md:overflow-x-auto border-1 border-white">
-        <table className="md:w-full md:table-fixed border-separate border-spacing-y-3">
-          <caption className="md:text-center md:text-3xl md:font-medium md:tracking-wider md:font-sans md:mb-7">
-            <p className="mb-3"> My Transactions </p>
+    <div className="w-full h-auto overflow-x-auto md:overflow-x-visible flex justify-center">
+      <div className="bg-[#021832] ml-61 md:ml-0 mb-5 md:w-full h-auto rounded-2xl p-5 md:px-10 border-1 border-white">
+        <table className="w-full table-fixed min-w-[600px] border-separate border-spacing-y-3 text-lg">
+          <caption className="text-center text-3xl font-medium tracking-wider font-sans mb-7">
+            <p className="mb-3 underline"> My Transactions </p>
             {editModeIdx != null && (
-              <motion.p
-                animate={{
-                  x: [10, -10, 10, 0],
-                }}
-                transition={{
-                  duration: 0.3,
-                }}
-                className="text-sm absolute text-green-600 left-2/4 -translate-x-2/4"
+              <motion.button
+                onClick={updateData}
+                className="text-sm bg-green-600 px-2 py-1 rounded absolute left-2/4 -translate-x-2/4 cursor-pointer"
               >
-                Press Enter To Save
-              </motion.p>
+                Update
+              </motion.button>
             )}
           </caption>
           {transactions.length === 0 ? (
@@ -103,7 +93,7 @@ const Transactions = ({ refresh, setrefresh }) => {
               <tr>
                 <td
                   colSpan={5}
-                  className="md:font-bold md:text-xl md:text-gray-700 md:text-center md:py-8"
+                  className="font-bold text-xl text-gray-700 text-center py-8"
                 >
                   No Data
                 </td>
@@ -111,13 +101,13 @@ const Transactions = ({ refresh, setrefresh }) => {
             </tbody>
           ) : (
             <>
-              <thead className="md:font-mono md:text-lg">
+              <thead className="font-mono text-lg">
                 <tr>
-                  <th className="md:text-start md:w-1/4">Name</th>
-                  <th className="md:text-start md:w-1/4">Amount</th>
-                  <th className="md:text-start md:w-1/4">Type</th>
-                  <th className="md:text-start md:w-1/4">Date</th>
-                  <th className="md:text-start md:w-32">Actions</th>
+                  <th className="text-start w-2/4 underline">Name</th>
+                  <th className="text-start w-2/4 underline">Amount</th>
+                  <th className="text-start w-2/4 underline">Type</th>
+                  <th className="text-start w-2/4 underline">Date</th>
+                  <th className="text-start w-32 underline">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -135,15 +125,14 @@ const Transactions = ({ refresh, setrefresh }) => {
                           ref={inputRef}
                           value={updatedInputs.name}
                           name="name"
-                          onKeyDown={(e) => updateData(e)}
                           onChange={(e) => {
                             handleInput(e);
                           }}
-                          className="px-2 w-2/4 border-2 border-white rounded outline-0"
+                          className="px-2 w-3/4 border-2 border-white rounded outline-0"
                         ></input>
                       </td>
                     ) : (
-                      <td className="md:w-1/4">{t.name}</td>
+                      <td className="w-full">{t.name}</td>
                     )}
                     {editModeIdx === idx ? (
                       <td>
@@ -153,15 +142,14 @@ const Transactions = ({ refresh, setrefresh }) => {
                           ref={inputRef}
                           value={updatedInputs.amount}
                           name="amount"
-                          onKeyDown={(e) => updateData(e)}
                           onChange={(e) => {
                             handleInput(e);
                           }}
-                          className="px-2 w-2/4 border-2 border-white rounded outline-0"
+                          className="px-2 w-3/4 border-2 border-white rounded outline-0"
                         ></input>{" "}
                       </td>
                     ) : (
-                      <td className="md:w-1/4">{t.amount}</td>
+                      <td className="w-full">{t.amount}</td>
                     )}
                     {editModeIdx === idx ? (
                       <td>
@@ -171,19 +159,18 @@ const Transactions = ({ refresh, setrefresh }) => {
                           ref={inputRef}
                           value={updatedInputs.type}
                           name="type"
-                          onKeyDown={(e) => updateData(e)}
                           onChange={(e) => {
                             handleInput(e);
                           }}
-                          className="px-2 w-2/4 border-2 border-white rounded outline-0"
+                          className="px-2 w-3/4 border-2 border-white rounded outline-0"
                         ></input>{" "}
                       </td>
                     ) : (
                       <td
-                        className={`md:w-1/4 ${
+                        className={`w-full ${
                           t.type === "Expense"
-                            ? "md:text-red-600"
-                            : "md:text-emerald-600"
+                            ? "text-red-600"
+                            : "text-emerald-600"
                         }`}
                       >
                         {t.type}
@@ -196,20 +183,19 @@ const Transactions = ({ refresh, setrefresh }) => {
                           ref={inputRef}
                           value={updatedInputs.date}
                           name="date"
-                          onKeyDown={(e) => updateData(e)}
                           onChange={(e) => {
                             handleInput(e);
                           }}
-                          className="px-2 w-2/4 border-2 border-white rounded outline-0"
+                          className="px-2 w-3/4 border-2 border-white rounded outline-0"
                         ></input>
                       </td>
                     ) : (
-                      <td className="md:w-1/6">{t.date}</td>
+                      <td className="w-full">{t.date}</td>
                     )}
 
-                    <td className="md:w-10 md:flex md:justify-evenly md:gap-5">
+                    <td className="w-10 flex justify-evenly gap-5">
                       <div
-                        className="md:font-medium md:text-red-600 md:cursor-pointer md:select-none"
+                        className="font-medium text-red-600 cursor-pointer select-none"
                         onClick={() => deleteRow(idx)}
                       >
                         Delete
@@ -219,7 +205,7 @@ const Transactions = ({ refresh, setrefresh }) => {
                           seteditModeIdx(editModeIdx === idx ? null : idx);
                           setDefault(idx);
                         }}
-                        className="md:font-medium md:text-[#71e4f7] md:cursor-pointer md:select-none"
+                        className="font-medium text-[#71e4f7] cursor-pointer select-none"
                       >
                         {editModeIdx === idx ? "Cancel" : "Edit"}
                       </div>
