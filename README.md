@@ -63,9 +63,9 @@ npm run dev<br><br>
 📤 Export to CSV<br>
 
 # 🧑‍💻 About This Project
-→ Built from scratch using React + Vite with about 20–30% help from AI tools and the rest manually written. It’s a clean, local-first app with smooth animations and clear UX.
+→ Built from scratch using React + Vite with about 20–30% help from AI tools and the rest manually written. It’s a clean, local-first app with smooth animations and clear UX.<br>
 
-📄 License
+📄 License <br>
 Licensed under the MIT License
 
 
