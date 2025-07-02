@@ -39,11 +39,33 @@ An intuitive and beautifully animated Single Page Application built with Vite + 
 🎞️ Framer Motion<br>
 💾 LocalStorage API<br><br>
 
+# 🌐 Live Demo
+🔗https://finance-tracker-ruby-zeta.vercel.app<br><br>
+
 
 # 🧠 How It Works<br>
-→Data is stored as an array of transaction objects in localStorage.<br>
-→Balance and totals are calculated dynamically from stored data.<br>
-→Framer Motion provides animations on adding, deleting, and editing transactions.<br>
-→Resetting clears balance data but keeps history intact unless explicitly deleted.<br>
+→ Data is stored as an array of transaction objects in localStorage.<br>
+→ Balance and totals are calculated dynamically from stored data.<br>
+→ Framer Motion provides animations on adding, deleting, and editing transactions.<br>
+→ Resetting clears balance data but keeps history intact unless explicitly deleted.<br><br>
+
+# 🛠️ Getting Started
+To run locally:<br>
+git clone https://github.com/yourusername/finance-tracker.git<br>
+cd finance-tracker<br>
+npm install<br>
+npm run dev<br><br>
+
+# ✨ Planned Features
+📊 Pie/Bar charts for insights<br>
+🔍 Filter/search transactions<br>
+🌙 Dark Mode<br>
+📤 Export to CSV<br>
+
+# 🧑‍💻 About This Project
+→ Built from scratch using React + Vite with about 20–30% help from AI tools and the rest manually written. It’s a clean, local-first app with smooth animations and clear UX.
+
+📄 License
+Licensed under the MIT License
 
 
