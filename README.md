@@ -51,7 +51,7 @@ An intuitive and beautifully animated Single Page Application built with Vite + 
 
 # 🛠️ Getting Started
 To run locally:<br>
-git clone https://github.com/yourusername/finance-tracker.git<br>
+git clone https://github.com/Ameer77-texh/finance-tracker.git<br>
 cd finance-tracker<br>
 npm install<br>
 npm run dev<br><br>
