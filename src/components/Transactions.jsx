@@ -1,11 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, spring } from "motion/react";
+import Search from "./Search";
 
 const Transactions = ({ refresh, setrefresh }) => {
   const [transactions, settransactions] = useState([]);
+  const [allTransactions, setallTransactions] = useState([]);
+  const [searchTerm, setsearchTerm] = useState("");
+  const [sortTerm, setsortTerm] = useState("latest");
   const [editModeIdx, seteditModeIdx] = useState(null);
+  const [status, setstatus] = useState("No data");
   const inputRef = useRef(null);
-  const [wrongKey, setwrongKey] = useState(false);
 
   const [updatedInputs, setupdatedInputs] = useState({
     name: "",
@@ -45,9 +49,79 @@ const Transactions = ({ refresh, setrefresh }) => {
     );
     settransactions(updated);
     localStorage.setItem("transactions", JSON.stringify(updated));
+
+    const totalIncome = updated.reduce((acc, u) => {
+      if (u.type.toLowerCase() === "income") return acc + Number(u.amount);
+      return acc;
+    }, 0);
+
+    const totalExpense = updated.reduce(
+      (acc, u) =>
+        acc + (u.type.toLowerCase() === "expense" ? Number(u.amount) : 0),
+      0
+    );
+    localStorage.setItem("income", String(totalIncome));
+    localStorage.setItem("expense", String(totalExpense));
     setrefresh((prev) => prev + 1);
     seteditModeIdx(null);
-    setwrongKey(false);
+  };
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setsearchTerm(value);
+
+    if (value === "") {
+      setrefresh((prev) => prev + 1);
+    } else {
+      const filtered = transactions.filter((t) =>
+        t.name.toLowerCase().includes(value.toLowerCase())
+      );
+      if (filtered.length === 0) {
+        setstatus("No match found, clear the input to show all data");
+      }
+      settransactions(filtered);
+    }
+  };
+
+  const handleSort = (e) => {
+    const value = e.target.value;
+    setsortTerm(value);
+
+    let sorted = [...allTransactions];
+    if (value === "latest") {
+      const reversed = [...allTransactions].reverse();
+      settransactions(reversed);
+      return;
+    } else if (value === "az") {
+      sorted.sort((a, b) =>
+        a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+      );
+    } else if (value === "za") {
+      sorted.sort((a, b) =>
+        b.name.toLowerCase().localeCompare(a.name.toLowerCase())
+      );
+    } else if (value === "smallbig") {
+      sorted.sort((a, b) => a.amount - b.amount);
+    } else if (value === "bigsmall") {
+      sorted.sort((a, b) => b.amount - a.amount);
+    } else if (value === "oldest") {
+      const reversed = [...allTransactions].reverse();
+      settransactions(reversed);
+      return;
+    } else if (value === "incomes") {
+      let filtered = sorted.filter((s) => s.type.toLowerCase() === "income");
+
+      sorted = filtered;
+    } else if (value === "expenses") {
+      let filtered = sorted.filter((s) => s.type.toLowerCase() === "expense");
+
+      sorted = filtered;
+    } else {
+      setrefresh((prev) => prev + 1);
+      setsortTerm("latest");
+      return;
+    }
+    settransactions(sorted);
   };
 
   useEffect(() => {
@@ -64,7 +138,8 @@ const Transactions = ({ refresh, setrefresh }) => {
     } catch {
       data = [];
     }
-    settransactions(data);
+    settransactions(data.reverse());
+    setallTransactions(data.reverse());
   }, [refresh]);
 
   const deleteRow = (idx) => {
@@ -76,6 +151,12 @@ const Transactions = ({ refresh, setrefresh }) => {
   return (
     <div className="w-full h-auto overflow-x-auto md:overflow-x-visible flex justify-center">
       <div className="bg-[#021832] ml-61 md:ml-0 mb-5 md:w-full h-auto rounded-2xl p-5 md:px-10 border-1 border-white">
+        <Search
+          searchfunc={handleSearch}
+          searchTerm={searchTerm}
+          sortTerm={sortTerm}
+          sortfunc={handleSort}
+        />
         <table className="w-full table-fixed min-w-[600px] border-separate border-spacing-y-3 text-lg">
           <caption className="text-center text-3xl font-medium tracking-wider font-sans mb-7">
             <p className="mb-3 underline"> My Transactions </p>
@@ -95,7 +176,7 @@ const Transactions = ({ refresh, setrefresh }) => {
                   colSpan={5}
                   className="font-bold text-xl text-gray-700 text-center py-8"
                 >
-                  No Data
+                  {status}
                 </td>
               </tr>
             </tbody>
@@ -168,7 +249,7 @@ const Transactions = ({ refresh, setrefresh }) => {
                     ) : (
                       <td
                         className={`w-full ${
-                          t.type === "Expense"
+                          t.type.toLowerCase() === "expense"
                             ? "text-red-600"
                             : "text-emerald-600"
                         }`}
