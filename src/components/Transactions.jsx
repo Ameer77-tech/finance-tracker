@@ -73,11 +73,15 @@ const Transactions = ({ refresh, setrefresh }) => {
     if (value === "") {
       setrefresh((prev) => prev + 1);
     } else {
-      const filtered = transactions.filter((t) =>
+      let filter = [...allTransactions]
+      const filtered = filter.filter((t) =>
         t.name.toLowerCase().includes(value.toLowerCase())
       );
+      settransactions(filtered)
       if (filtered.length === 0) {
-        setstatus("No match found, clear the input to show all data");
+        setstatus("No match found");
+      }else{
+        setstatus("No data")
       }
       settransactions(filtered);
     }
@@ -89,8 +93,8 @@ const Transactions = ({ refresh, setrefresh }) => {
 
     let sorted = [...allTransactions];
     if (value === "latest") {
-      const reversed = [...allTransactions].reverse();
-      settransactions(reversed);
+      let latest = [...allTransactions]
+      settransactions(latest)
       return;
     } else if (value === "az") {
       sorted.sort((a, b) =>
@@ -105,7 +109,7 @@ const Transactions = ({ refresh, setrefresh }) => {
     } else if (value === "bigsmall") {
       sorted.sort((a, b) => b.amount - a.amount);
     } else if (value === "oldest") {
-      const reversed = [...allTransactions].reverse();
+      const reversed = sorted.reverse()
       settransactions(reversed);
       return;
     } else if (value === "incomes") {
@@ -114,7 +118,6 @@ const Transactions = ({ refresh, setrefresh }) => {
       sorted = filtered;
     } else if (value === "expenses") {
       let filtered = sorted.filter((s) => s.type.toLowerCase() === "expense");
-
       sorted = filtered;
     } else {
       setrefresh((prev) => prev + 1);
